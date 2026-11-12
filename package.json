@@ -1,0 +1,37 @@
+{
+  "name": "wm-warehouse-3d-node14",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "description": "WM Warehouse: branded 3D warehouse mock simulation plus read-only WMS/WCS device integration. Node 14.20.1.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3000",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "check:logic": "bash scripts/test-logic.sh",
+    "check:node": "bash scripts/check-node.sh"
+  },
+  "dependencies": {
+    "@emotion/react": "11.11.4",
+    "@emotion/styled": "11.11.5",
+    "@mui/icons-material": "5.15.14",
+    "@mui/material": "5.15.14",
+    "@react-three/fiber": "8.13.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "three": "0.153.0"
+  },
+  "devDependencies": {
+    "@types/node": "14.18.63",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "@types/three": "0.153.0",
+    "@vitejs/plugin-react": "4.0.4",
+    "typescript": "5.2.2",
+    "vite": "4.4.9"
+  },
+  "engines": {
+    "node": ">=14.18.0 <15",
+    "npm": ">=6 <7"
+  }
+}
