@@ -1,10 +1,14 @@
 import { useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Color } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {
   SLOTS, SLOT_BY_ID, activeTask, transientPallet, type FleetPosition,
   type Pallet, type RowId, type SimulationState,
 } from '../simulation/model';
+
+// Reuse the same color object; SceneContent can re-render often during animation.
+const warehouseBackground = new Color('#eaf0f5');
 
 export type CameraView = 'overview' | 'aisle' | 'top';
 export type WarehouseSceneProps = {
@@ -181,7 +185,7 @@ function SceneContent({ simulation, selectedSlotId, onSelectSlot, onHoverSlot, c
   const moving = transientPallet(simulation);
   const active = activeTask(simulation);
   return <>
-    <color attach="background" args={['#eaf0f5']} />
+    <primitive attach="background" object={warehouseBackground} />
     <fog attach="fog" args={['#eaf0f5', 25, 60]} />
     <ambientLight intensity={1.7} />
     <hemisphereLight args={['#ffffff', '#98aabb', 0.8]} />

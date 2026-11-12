@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode, type ComponentType } from 'react';
 import {
-  Alert, Box, Button, Chip, Divider, Drawer, FormControl, IconButton, InputLabel,
+  Alert, Box as MuiBox, Button, Chip, Divider, Drawer, FormControl, IconButton, InputLabel,
   LinearProgress, MenuItem, Paper, Select, Snackbar, Stack, Table, TableBody, TableCell,
   TableContainer, TableHead, TableRow, ToggleButton, ToggleButtonGroup, Tooltip,
   Typography, useMediaQuery,
@@ -21,6 +21,10 @@ import {
   initialSimulation, type Operation, type SimulationState, type WarehouseTask,
 } from './simulation/model';
 
+// Avoid the TS2590 JSX union explosion from MUI 5 Box with this pinned TS 5.2 toolchain.
+// This still renders the unmodified Material UI Box at runtime.
+const Box = MuiBox as ComponentType<any>;
+
 const panelSx = { border: '1px solid #e4eaf2', borderRadius: '15px', overflow: 'hidden', bgcolor: '#fff' } as const;
 const monoSx = { fontFamily: 'ui-monospace, SFMono-Regular, Consolas, monospace', fontSize: '0.76rem' } as const;
 const navLinks = [
@@ -34,7 +38,7 @@ const navLinks = [
 function SideNavigation({ close, openIntegration }: { close?: () => void; openIntegration: () => void }) {
   return <Box sx={{ width: 226, minHeight: '100%', bgcolor: '#12253d', color: '#d1e2f4', px: 2.1, py: 3 }}>
     <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 5, px: 0.5 }}>
-      <Box component="img" src="/wm-fox-logo.png" alt="WM Warehouse fox logo" sx={{ width: 44, height: 44, objectFit: 'contain', bgcolor: '#fff', borderRadius: 2.1, p: 0.35 }} />
+      <Box component="img" src={`${import.meta.env.BASE_URL}wm-fox-logo.png`} alt="WM Warehouse fox logo" sx={{ width: 44, height: 44, objectFit: 'contain', bgcolor: '#fff', borderRadius: 2.1, p: 0.35 }} />
       <Box><Typography sx={{ fontWeight: 900, color: '#fff', letterSpacing: '-0.03em', lineHeight: 1.2 }}>WM Warehouse</Typography>
         <Typography sx={{ fontSize: 10.5, color: '#8eabc8', mt: 0.2, letterSpacing: '0.09em' }}>3D DIGITAL TWIN</Typography></Box>
     </Stack>

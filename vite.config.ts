@@ -31,6 +31,8 @@ function readOnlyBridge(): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
+    // GitHub project pages are served from /wm-warehouse/, not the domain root.
+    base: mode === 'production' ? '/wm-warehouse/' : '/',
     plugins: [readOnlyBridge(), react()],
     server: {
       host: '127.0.0.1', port: 3000, strictPort: true,

@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, type ComponentType } from 'react';
 import {
-  Alert, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle,
+  Alert, Box as MuiBox, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle,
   Divider, FormControlLabel, Grid, Paper, Stack, Switch, Tab, Tabs, TextField, Typography,
 } from '@mui/material';
 import { CableOutlined, CheckCircleOutline, Close, LanOutlined, Refresh, SecurityOutlined, SettingsEthernetOutlined, SensorsOutlined, WarningAmberOutlined } from '@mui/icons-material';
 import { ConnectionResult, DeviceSnapshots, IntegrationSettings, scalar } from './useDeviceIntegration';
+
+// Same MUI 5 Box compatibility shim used by App.tsx; runtime stays unchanged.
+const Box = MuiBox as ComponentType<any>;
 
 type Props = {
   open: boolean;
